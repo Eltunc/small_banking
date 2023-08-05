@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+
+    <changeSet id="1242" author="Eltunc">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS small_banking;
+        </sql>
+    </changeSet>
+
+    <changeSet id="145" author="Eltunc">
+        <createTable schemaName="small_banking" tableName="customers">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="surname" type="varchar(255)"/>
+            <column name="gsm_number" type="varchar(255)">
+                <constraints nullable="false" unique="true" />
+            </column>
+            <column name="balance" type="double"/>
+            <!-- Add other columns as needed -->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1645" author="Eltunc">
+        <insert
+                schemaName="small_banking"
+                tableName="customers">
+            <column name="name" value="Eltunc"/>
+            <column name="surname" value="Qenberov"/>
+            <column name="gsm_number" value="+994504355402"/>
+            <column name="balance" value="100.0"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
